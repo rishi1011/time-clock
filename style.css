@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400&display=swap');
+
+:root{
+    --clock-outer-outline: #080809;
+    --clock-inner-outline: #A9ACB4;
+    --body-background: #373B44;
+    --clock-background: #555A67;
+    --short-hand: #EBF6FA;
+    --big-hand: #C30B0C;
+}
+
+*{
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    background-color: var(--body-background);
+}
+
+.clock{
+    position: relative;
+    height: 300px;
+    width: 300px;
+    background-color: var(--clock-background);
+    border-radius: 50%;
+    border: 7px solid var(--clock-inner-outline);
+}
+
+.clock::before{
+    content: '';
+    background: var(--clock-outer-outline);
+    position: absolute;
+    top: -13px;
+    bottom: -13px;
+    left: -13px;
+    right: -13px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.hand{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    background-color: var(--short-hand);
+    transform-origin: bottom;
+    border-radius: 15px;
+}
+
+.hand.hour{
+    transform: translate(-50%, -100%) rotate(300deg);
+    height: 90px;
+}
+
+.hand.minute{
+    transform: translate(-50%, -100%) rotate(60deg);
+    height: 110px;
+}
+
+.hand.second{
+    transform: translate(-50%, -100%) rotate(180deg);
+    height: 118px;
+    width: 3px;
+    background-color: var(--big-hand);
+    z-index: 1;
+}
+
+.center-point{
+    height: 18px;
+    width: 18px;
+    background-color: var(--short-hand);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-point::after {
+    content: '';
+    height: 11px;
+    width: 11px;
+    background-color: var(--big-hand);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+span{
+    position: absolute;
+    font-size: 1.5rem;
+}
+
+span.top{
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+span.bottom{
+    bottom: 2%;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+span.left{
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+}
+
+span.right{
+    top: 50%;
+    transform: translateY(-50%);
+    right: 3%;
+}
