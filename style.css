@@ -12,7 +12,7 @@
 
 html.dark{
     --clock-outer-outline: #080809;
-    --num-color: #080809;
+    --num-color: #fff;
     --clock-inner-outline: #A9ACB4;
     --body-background: #373B44;
     --clock-background: #555A67;
