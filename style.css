@@ -1,7 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400&display=swap');
 
-:root{
+:root {
     --clock-outer-outline: #080809;
+    --num-color: #080809;
+    --clock-inner-outline: #fff;
+    --body-background: #fff;
+    --clock-background: #fff;
+    --short-hand: #080809;
+    --big-hand: #C30B0C;
+}
+
+html.dark{
+    --clock-outer-outline: #080809;
+    --num-color: #080809;
     --clock-inner-outline: #A9ACB4;
     --body-background: #373B44;
     --clock-background: #555A67;
@@ -9,9 +20,8 @@
     --big-hand: #C30B0C;
 }
 
-*{
+* {
     box-sizing: border-box;
-    /* outline: 1px solid red; */
 }
 
 body {
@@ -20,22 +30,47 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 50px;
     height: 100vh;
     overflow: hidden;
     margin: 0;
     background-color: var(--body-background);
+    position: relative;
+    transition: 0.5s;
 }
 
-.clock{
+.toggle-mode{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    padding: 10px 25px;
+    background-color: var(--clock-background);
+    border: 1px solid var(--clock-outer-outline);
+    cursor: pointer;
+    border-radius: 1px;
+    color: var(--short-hand);
+    font-family: inherit;
+}
+
+.toggle-mode:focus {
+    outline: 0;
+}
+
+.toggle-mode:active{
+    transform: scale(0.98);
+}
+
+.clock {
     position: relative;
     height: 300px;
     width: 300px;
     background-color: var(--clock-background);
     border-radius: 50%;
     border: 7px solid var(--clock-inner-outline);
+    box-shadow: 0 0 10px 1px var(--clock-outer-outline) inset;
 }
 
-.clock::before{
+.clock::before {
     content: '';
     background: var(--clock-outer-outline);
     position: absolute;
@@ -45,9 +80,12 @@ body {
     right: -13px;
     z-index: -1;
     border-radius: 50%;
+    box-shadow:
+        0 30px 50px -25px var(--clock-outer-outline),
+        0 -10px 25px var(--clock-background);
 }
 
-.hand{
+.hand {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -57,17 +95,19 @@ body {
     border-radius: 15px;
 }
 
-.hand.hour{
+.hand.hour {
     transform: translate(-50%, -100%) rotate(300deg);
     height: 90px;
+    transition: all 0.5s ease-in;
 }
 
-.hand.minute{
+.hand.minute {
     transform: translate(-50%, -100%) rotate(60deg);
     height: 110px;
+    transition: all 0.5s ease-in;
 }
 
-.hand.second{
+.hand.second {
     transform: translate(-50%, -100%) rotate(180deg);
     height: 118px;
     width: 3px;
@@ -75,7 +115,18 @@ body {
     z-index: 1;
 }
 
-.center-point{
+.hand.second::after {
+    content: '';
+    height: 15px;
+    width: 3px;
+    background-color: var(--big-hand);
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    border-radius: 15px;
+}
+
+.center-point {
     height: 18px;
     width: 18px;
     background-color: var(--short-hand);
@@ -98,31 +149,61 @@ body {
     transform: translate(-50%, -50%);
 }
 
-span{
+.clock > span {
     position: absolute;
     font-size: 1.5rem;
+    color: var(--num-color);
 }
 
-span.top{
+span.top {
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-span.bottom{
+span.bottom {
     bottom: 2%;
     transform: translateX(-50%);
     left: 50%;
 }
 
-span.left{
+span.left {
     top: 50%;
     transform: translateY(-50%);
     left: 3%;
 }
 
-span.right{
+span.right {
     top: 50%;
     transform: translateY(-50%);
     right: 3%;
 }
+
+.date-time-container{
+    text-align: center;
+    font-family: inherit;
+    color: var(--short-hand);
+    letter-spacing: 1px;
+}
+
+p{
+    margin: 0;
+}
+
+.time{  
+    font-size: 3rem;
+}
+
+.circle {
+    background-color: var(--short-hand);
+    color: var(--clock-background);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
